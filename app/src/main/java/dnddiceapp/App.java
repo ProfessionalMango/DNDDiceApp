@@ -7,16 +7,28 @@ import javax.swing.*;
 import javax.swing.text.*;
 
 public class App {
-    private static void printWindow() {
-        JFrame window = new JFrame("DND Dice App");
+    private JButton roll;
+    private JButton clear;
+    private JTextField input;
+    private JTextPane recentRoll;
+    private JFrame window;
+    private JTextPane pastRolls;
+    
+    public App() {
+        roll = new JButton("ROLL");
+        clear = new JButton("CLEAR");
+        input = new JTextField();
+        recentRoll = new JTextPane();
+        pastRolls = new JTextPane();
+        window = new JFrame("DND Dice App");
+    }
+
+    private void printWindow() {
         JPanel panel = new JPanel();
         GroupLayout layout = new GroupLayout(panel);
-        JButton roll = new JButton("ROLL");
-        JButton clear = new JButton("CLEAR");
-        JTextField input = new JTextField();
+
         input.setColumns(40);
         input.setFont(new Font(input.getFont().getName(), Font.PLAIN, 20));
-        JTextPane recentRoll = new JTextPane();
         recentRoll.setEditable(false);
         recentRoll.setText("First Line\nTEST");
         recentRoll.setMinimumSize(new Dimension(50, 500));
@@ -25,7 +37,6 @@ public class App {
         recentRoll.setParagraphAttributes( attrs, false);
         // recentRoll.setRows(10);
         recentRoll.setFont(new Font(recentRoll.getFont().getName(), Font.PLAIN, 40));
-        JTextPane pastRolls = new JTextPane();
         pastRolls.setEditable(false);
         pastRolls.setMinimumSize(new Dimension(50, 500));
         pastRolls.setText("TEST");
@@ -64,8 +75,15 @@ public class App {
         window.setResizable(false);
         window.setVisible(true);
     }
+
+    public void attachListeners() {
+        // clear.addActionListener(new ClearListener());
+    }
+
     public static void main(String[] args) {
-        printWindow();
+        App app = new App();
+        //app.attachListeners();
+        app.printWindow();
     }
 
 }
